@@ -1,7 +1,5 @@
 import 'dart:math';
 import 'dart:ui';
-
-import 'package:app_abastecimento_agua/app/views/finalPage.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatefulWidget {
@@ -21,9 +19,6 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      routes: {
-        '/finalPage': (context) => FinalPage(),
-      },
       title: "App de Abastecimento de Água",
       home: Scaffold(
         appBar: AppBar(
@@ -155,21 +150,45 @@ class _MyAppState extends State<MyApp> {
             final int garrafa2 = int.tryParse(garrafa2Controller.text) ?? 0;
             final int garrafa3 = int.tryParse(garrafa3Controller.text) ?? 0;
             final int somaGarrafas = garrafa1 + garrafa2 + garrafa3;
+
             if (somaGarrafas == capacidade) {
-              print(
-                  "Foram utilizadas as garrafas de ${garrafa1.toString()} litros,${garrafa2.toString()} litros e ${garrafa3.toString()} litros, sem desperdícios, Parabéns!!!");
+              return showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      content: Text(
+                          "Foram utilizadas as garrafas de ${garrafa1.toString()} litros,${garrafa2.toString()} litros e ${garrafa3.toString()} litros, sem desperdícios, Parabéns!!!"),
+                    );
+                  });
             } else if (somaGarrafas >= capacidade) {
               int desperdicio = somaGarrafas - capacidade;
-              print(
-                  "Foram utilizadas as garrafas de ${garrafa1.toString()} litros,${garrafa2.toString()} litros e ${garrafa3.toString()} litros, porém houve uma sobra de $desperdicio litro(s), Tome Cuidado!!!");
+              return showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      content: Text(
+                          "Foram utilizadas as garrafas de ${garrafa1.toString()} litros,${garrafa2.toString()} litros e ${garrafa3.toString()} litros, porém houve uma sobra de $desperdicio litro(s), Tome Cuidado!!!"),
+                    );
+                  });
             } else {
               int falta = capacidade - somaGarrafas;
-              print(
-                  "Foram utilizadas as garrafas de ${garrafa1.toString()} litros,${garrafa2.toString()} litros e ${garrafa3.toString()} litros, porém ainda falta(m) $falta litro(s) para completar, reveja as garrafas utilizadas.");
+              return showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      content: Text(
+                          "Foram utilizadas as garrafas de ${garrafa1.toString()} litros,${garrafa2.toString()} litros e ${garrafa3.toString()} litros, porém ainda falta(m) $falta litro(s) para completar, reveja as garrafas utilizadas."),
+                    );
+                  });
             }
-            Navigator.of(context).pushNamed("/finalPage");
           });
   }
+
+  // _validaEstado(context, novaTransferencia, valor) {
+  //   Provider.of<Transferencias>(context, listen: false)
+  //       .adiciona(novaTransferencia);
+  //   Provider.of<Saldo>(context, listen: false).subtrair(valor);
+  // }
 
   cancel() {
     _currentStep > 0 ? setState(() => _currentStep -= 1) : null;
