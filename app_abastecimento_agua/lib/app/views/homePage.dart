@@ -157,7 +157,7 @@ class _MyAppState extends State<MyApp> {
                   builder: (context) {
                     return AlertDialog(
                       content: Text(
-                          "Foram utilizadas as garrafas de ${garrafa1.toString()} litros,${garrafa2.toString()} litros e ${garrafa3.toString()} litros, sem desperdícios, Parabéns!!!"),
+                          "Foram utilizadas as garrafas de ${garrafa1.toString()} litros, ${garrafa2.toString()} litros e ${garrafa3.toString()} litros, sem desperdícios, Parabéns!!!"),
                     );
                   });
             } else if (somaGarrafas >= capacidade) {
@@ -167,7 +167,7 @@ class _MyAppState extends State<MyApp> {
                   builder: (context) {
                     return AlertDialog(
                       content: Text(
-                          "Foram utilizadas as garrafas de ${garrafa1.toString()} litros,${garrafa2.toString()} litros e ${garrafa3.toString()} litros, porém houve uma sobra de $desperdicio litro(s), Tome Cuidado!!!"),
+                          "Foram utilizadas as garrafas de ${garrafa1.toString()} litros, ${garrafa2.toString()} litros e ${garrafa3.toString()} litros, porém houve uma sobra de $desperdicio litro(s), Tome Cuidado!!!"),
                     );
                   });
             } else {
@@ -177,7 +177,7 @@ class _MyAppState extends State<MyApp> {
                   builder: (context) {
                     return AlertDialog(
                       content: Text(
-                          "Foram utilizadas as garrafas de ${garrafa1.toString()} litros,${garrafa2.toString()} litros e ${garrafa3.toString()} litros, porém ainda falta(m) $falta litro(s) para completar, reveja as garrafas utilizadas."),
+                          "Foram utilizadas as garrafas de ${garrafa1.toString()} litros, ${garrafa2.toString()} litros e ${garrafa3.toString()} litros, porém ainda falta(m) $falta litro(s) para completar, reveja as garrafas utilizadas."),
                     );
                   });
             }
