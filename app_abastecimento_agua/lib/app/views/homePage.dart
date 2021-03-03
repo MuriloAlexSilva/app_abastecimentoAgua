@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
@@ -184,35 +183,7 @@ class _MyAppState extends State<MyApp> {
           });
   }
 
-  // _validaEstado(context, novaTransferencia, valor) {
-  //   Provider.of<Transferencias>(context, listen: false)
-  //       .adiciona(novaTransferencia);
-  //   Provider.of<Saldo>(context, listen: false).subtrair(valor);
-  // }
-
   cancel() {
     _currentStep > 0 ? setState(() => _currentStep -= 1) : null;
-  }
-}
-
-encher(int capacidade) {
-  int galao = 0;
-  int garrafa = 0;
-  var garrafasUtilizadas = [];
-
-  for (int i = 0; galao <= capacidade; i++) {
-    garrafa = Random().nextInt(6) + 1;
-    if ((galao + garrafa) < capacidade) {
-      garrafasUtilizadas.add(garrafa);
-      galao += garrafa;
-    }
-    if ((galao + garrafa) == capacidade) {
-      garrafasUtilizadas.add(garrafa);
-      galao += garrafa;
-      print("galão $galao");
-      return garrafasUtilizadas;
-    } else {
-      continue;
-    }
   }
 }
