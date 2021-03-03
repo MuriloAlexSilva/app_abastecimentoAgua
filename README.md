@@ -14,6 +14,3 @@
 <li>Serão apresentadas mensagens diferentes para sobra, falta e quantidade de agua corretas</li>
 <ol>
 
-<p align ="center">
-<img src="/images/gifTela.gif">
-</p>
