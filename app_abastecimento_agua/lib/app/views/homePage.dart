@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:app_abastecimento_agua/components/formFieldCustom.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatefulWidget {
@@ -11,6 +12,7 @@ class _MyAppState extends State<MyApp> {
   int _currentStep = 0;
   StepperType stepperType = StepperType.vertical;
   TextEditingController capacidadeController = TextEditingController();
+  TextEditingController qtddGarrafaController = TextEditingController();
   TextEditingController garrafa1Controller = TextEditingController();
   TextEditingController garrafa2Controller = TextEditingController();
   TextEditingController garrafa3Controller = TextEditingController();
@@ -33,7 +35,7 @@ class _MyAppState extends State<MyApp> {
           onStepCancel: cancel,
           steps: [
             Step(
-              title: Text("Qual o volume do galão?"),
+              title: Text("Informe a quantidade de litros do galão?"),
               content: Column(
                 children: [
                   TextFormField(
@@ -43,11 +45,24 @@ class _MyAppState extends State<MyApp> {
                     ),
                     keyboardType: TextInputType.number,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                        "O volume desejado deverá ser numeros inteiros(Ex.: 1,2,3 etc...)"),
-                  )
+                ],
+              ),
+              isActive: _currentStep >= 0,
+              state:
+                  _currentStep >= 0 ? StepState.complete : StepState.disabled,
+            ),
+            Step(
+              title:
+                  Text("Informe a quantidade de garrafas a serem utilizadas?"),
+              content: Column(
+                children: [
+                  TextFormField(
+                    controller: qtddGarrafaController,
+                    decoration: InputDecoration(
+                      labelText: 'Informe a quantidade de garrafas',
+                    ),
+                    keyboardType: TextInputType.number,
+                  ),
                 ],
               ),
               isActive: _currentStep >= 0,
@@ -58,50 +73,7 @@ class _MyAppState extends State<MyApp> {
               title: Text("Qual o volume das garrafas desejadas?"),
               content: Column(
                 children: [
-                  TextFormField(
-                    controller: garrafa1Controller,
-                    decoration: InputDecoration(
-                      labelText: 'Informe o volume da 1ª garrafa',
-                    ),
-                    keyboardType: TextInputType.number,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                        "O volume desejado deverá ser numeros inteiros(Ex.: 1,2,3 etc...)"),
-                  ),
-                  SizedBox(height: 10),
-                  TextFormField(
-                    controller: garrafa2Controller,
-                    decoration: InputDecoration(
-                      labelText: 'Informe o volume da 2ª garrafa',
-                    ),
-                    keyboardType: TextInputType.number,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                        "O volume desejado deverá ser numeros inteiros(Ex.: 1,2,3 etc...)"),
-                  ),
-                  SizedBox(height: 10),
-                  TextFormField(
-                    controller: garrafa3Controller,
-                    decoration: InputDecoration(
-                      labelText: 'Informe o volume da 3ª garrafa',
-                    ),
-                    keyboardType: TextInputType.number,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                        "O volume desejado deverá ser numeros inteiros(Ex.: 1,2,3 etc...)"),
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    "Cuidado!!! Se atentar quanto ao volume da soma das garrafas, para que não haja desperdício ao encher seu galão!!!",
-                    style: TextStyle(
-                        color: Colors.red, fontWeight: FontWeight.bold),
-                  )
+                  FormFieldCustom(controller: garrafa1Controller),
                 ],
               ),
               isActive: _currentStep >= 0,
@@ -141,7 +113,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   continued() {
-    _currentStep < 2
+    _currentStep < 3
         ? setState(() => _currentStep += 1)
         : setState(() {
             final int capacidade = int.tryParse(capacidadeController.text);
