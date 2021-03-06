@@ -71,11 +71,9 @@ class _MyAppState extends State<MyApp> {
             ),
             Step(
               title: Text("Qual o volume das garrafas desejadas?"),
-              content: Column(
-                children: [
-                  FormFieldCustom(controller: garrafa1Controller),
-                ],
-              ),
+              content: Column(children: [
+
+              ],)
               isActive: _currentStep >= 0,
               state:
                   _currentStep >= 1 ? StepState.complete : StepState.disabled,
@@ -104,6 +102,22 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
     );
+  }
+
+  formField(int quantity) {
+    int formField = 0;
+    while (formField <= quantity) {
+      return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Informe o volume da garrafa',
+                  ),
+                  keyboardType: TextInputType.number,
+                ),
+              );
+    }
+    
   }
 
   tapped(int step) {
@@ -159,3 +173,6 @@ class _MyAppState extends State<MyApp> {
     _currentStep > 0 ? setState(() => _currentStep -= 1) : null;
   }
 }
+
+
+
